@@ -1,4 +1,4 @@
-# ATLAS: Target-Pathology Atlas for One-Step High-Dimensional Continuous Generation
+# Prediction-Target Validity Under Fixed Interfaces
 
 This repository implements the paper-aligned ATLAS pipeline for studying **target-induced inverse problems** in one-step generation. It includes:
 

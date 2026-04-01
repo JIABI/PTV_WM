@@ -1,0 +1,67 @@
+seed: 7
+output_root: outputs/imagenet64_train_paper
+
+dataset:
+  name: imagefolder
+  root: data/imagenet64/train
+  image_size: 64
+  batch_size: 128
+  num_workers: 8
+  pin_memory: true
+
+corruption:
+  name: diffusion_like
+  t_min: 0.05
+  t_max: 0.95
+  num_time_samples: 8
+
+model:
+  name: paper_unet
+  base_channels: 128
+  time_dim: 128
+  channel_mults: [1, 2, 2]
+  num_res_blocks: 2
+  use_attention: true
+  attention_heads: 4
+  dropout: 0.0
+
+phi_map:
+  type: shallow
+  hidden_channels: 64
+  spectral_bound: 1.0
+
+loss:
+  pred_weight: 1.0
+  sem_weight: 0.5
+  stab_weight: 5.0e-5
+  loss_kind: mse
+
+train:
+  lr: 2.0e-4
+  weight_decay: 1.0e-4
+  max_steps: 10000
+  eval_every: 250
+  grad_clip: 1.0
+  ema_decay: 0.999
+  mixed_precision: false
+  save_every: 1000
+
+loss_target:
+  family: line_x0_u
+  alpha: 0.85
+
+manual_prediction_target:
+  family: line_x0_u
+  alpha: 0.25
+
+selection:
+  semantic_gap_weight: 0.75
+  complexity_weight: 0.10
+  candidate_family: scheduled
+  schedule_basis_order: 3
+
+eval:
+  collapse_threshold: 0.20
+  tail_percentiles: [50, 90, 95, 99]
+  save_samples: true
+  num_eval_batches: 16

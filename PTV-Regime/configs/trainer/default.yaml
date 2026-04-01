@@ -1,0 +1,12 @@
+epochs: 100
+batch_size: 64
+lr: 0.0003
+weight_decay: 1.0e-5
+lr_gamma: 0.98
+history_len: 16
+pred_len: 12
+teacher_forcing: true
+lambda_roll: 1.0
+lambda_slow: 0.05
+lambda_jump: 0.01
+event_weight: 0.5

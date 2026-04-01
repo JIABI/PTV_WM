@@ -1,0 +1,3 @@
+name: no_slow
+model:
+  transition_mode: no_slow

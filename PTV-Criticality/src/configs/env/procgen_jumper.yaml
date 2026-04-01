@@ -1,0 +1,5 @@
+name: procgen
+env_name: jumper
+num_levels: 200
+start_level: 0
+episode_len: 1000

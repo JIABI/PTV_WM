@@ -1,0 +1,6 @@
+name: interaction
+data_root: data/INTERACTION
+num_agents: 12
+obs_dim: 2
+action_dim: 2
+event_dim: 1

@@ -1,0 +1,17 @@
+runs:
+  - stage: train
+    overrides:
+      domain: lic_boids
+      task: existence
+      trainer.epochs: 100
+      trainer.batch_size: 64
+      trainer.history_len: 16
+      trainer.pred_len: 12
+      domain.n_samples: 4096
+      domain.num_agents: 24
+  - stage: eval
+    overrides: {domain: lic_boids, task: existence, evaluator: predictive}
+  - stage: eval
+    overrides: {domain: lic_boids, task: identifiability, evaluator: matched_geometry}
+  - stage: eval
+    overrides: {domain: lic_boids, task: identifiability, evaluator: counterfactual}

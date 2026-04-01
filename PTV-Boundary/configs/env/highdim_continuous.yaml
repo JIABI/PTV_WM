@@ -1,0 +1,8 @@
+name: highdim_continuous
+backend: myosuite
+env_id: myoFingerReachFixed-v0
+obs_type: proprio
+action_type: continuous
+obs_dim: 126
+action_dim: 39
+max_episode_steps: 1000

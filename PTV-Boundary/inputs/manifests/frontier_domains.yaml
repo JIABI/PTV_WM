@@ -1,0 +1,5 @@
+domains:
+  - name: highdim_continuous
+    label: MyoFingerReach
+    env_id: myoFingerReachFixed-v0
+    group: highdim_continuous

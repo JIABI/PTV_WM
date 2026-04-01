@@ -1,0 +1,14 @@
+domains:
+  - name: atari100k
+    label: Atari-Pong
+    env_id: ALE/Pong-v5
+    group: visual_discrete
+  - name: dmc_proprio
+    label: DMC-Proprio-Cheetah
+    domain_name: cheetah
+    task_name: run
+    group: nonimage_continuous
+  - name: highdim_continuous
+    label: MyoFingerReach
+    env_id: myoFingerReachFixed-v0
+    group: highdim_continuous

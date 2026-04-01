@@ -1,0 +1,17 @@
+name: atari100k
+backend: gymnasium
+env_id: ALE/Pong-v5
+obs_type: image
+action_type: discrete
+obs_dim: 84
+action_dim: 6
+obs_size: 84
+frame_skip: 4
+noop_max: 30
+frame_stack: 4
+grayscale_obs: false
+full_action_space: false
+episodic_life: false
+repeat_action_probability: 0.0
+max_episode_steps: 27000
+render_mode: null

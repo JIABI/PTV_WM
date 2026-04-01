@@ -1,0 +1,21 @@
+encoder:
+  image_channels: 3
+  image_size: 64
+  proprio_dim: 16
+  hidden_dim: 64
+backbone:
+  hidden_dim: 64
+  num_layers: 1
+bottleneck:
+  latent_dim: 32
+  kl_weight: 0.01
+chart_state_predictor:
+  hidden_dim: 64
+geometry_decoder:
+  hidden_dim: 64
+refiner:
+  margin_threshold: 0.2
+  risk_threshold: 0.6
+deploy_head:
+  kind: mlp
+  hidden_dim: 64

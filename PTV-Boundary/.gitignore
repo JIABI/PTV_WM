@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+outputs/runs/*
+outputs/checkpoints/*
+outputs/metrics/*
+outputs/figures/*
+outputs/charts/*
+outputs/predictions/*
+outputs/debug/*
+!outputs/**/.gitkeep

@@ -1,0 +1,4 @@
+name: mpc
+horizon: 12
+iterations: 8
+lr: 0.05

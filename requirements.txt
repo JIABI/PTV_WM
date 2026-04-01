@@ -1,0 +1,12 @@
+numpy
+pandas
+pyyaml
+scikit-learn
+matplotlib
+joblib
+tqdm
+pyarrow
+torch
+torchvision
+h5py
+pytest

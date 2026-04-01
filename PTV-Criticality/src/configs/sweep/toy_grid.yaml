@@ -1,0 +1,3 @@
+grid:
+  seed: [42, 43, 44]
+  method: [fatewm, uniform, freq_heuristic, attention_only]

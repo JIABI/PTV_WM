@@ -1,0 +1,17 @@
+domains:
+  - name: atari100k
+    label: Atari-Pong
+    env_id: ALE/Pong-v5
+    group: visual_discrete
+    random_score: -20.7
+    human_score: 14.6
+  - name: dmc_vision
+    label: DMC-Vision-Cartpole
+    domain_name: cartpole
+    task_name: swingup
+    group: visual_continuous
+  - name: dmc_proprio
+    label: DMC-Proprio-Cheetah
+    domain_name: cheetah
+    task_name: run
+    group: nonimage_continuous

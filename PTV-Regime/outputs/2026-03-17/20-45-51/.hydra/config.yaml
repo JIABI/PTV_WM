@@ -1,0 +1,57 @@
+domain:
+  name: lic_boids
+  mode: homogeneous
+  n_samples: 8
+  num_agents: 8
+  obs_dim: 4
+  action_dim: 2
+  event_dim: 5
+task:
+  name: existence
+model:
+  name: lic_wm
+  h_fast: 64
+  c_dim: 16
+  num_prototypes: 4
+  omega_max: 0.2
+  use_event_token: true
+  transition_mode: full
+  stochastic_climate: false
+  enable_residual_channel: false
+  residual_eps: 0.05
+  fast_mode: gru
+  context_dim: 8
+  experts: 3
+trainer:
+  epochs: 2
+  batch_size: 2
+  lr: 0.001
+  weight_decay: 0.0
+  lr_gamma: 0.7
+  history_len: 6
+  pred_len: 3
+  teacher_forcing: true
+  lambda_roll: 1.0
+  lambda_slow: 0.1
+  lambda_jump: 0.01
+  event_weight: 0.2
+evaluator:
+  name: predictive
+  threshold: 0.5
+  climate_dim: 0
+  delta_min: -1.0
+  delta_max: 1.0
+  delta_steps: 9
+  metric_name: min_separation
+planner:
+  name: none
+  horizon: 6
+  iterations: 1
+  lr: 0.1
+ablation:
+  name: full
+seed: 7
+deterministic: true
+checkpoint_path: outputs/runs/lic_boids_existence_7/checkpoint_best.pt
+auto_train_if_missing_checkpoint: true
+output_dir: outputs/runs/${domain.name}_${task.name}_${seed}

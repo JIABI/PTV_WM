@@ -1,0 +1,7 @@
+pool_budget: 32
+chart_budget: 8
+tau_delta: 0.1
+knn_edges: 3
+feature_dim: 8
+generator:
+  mode: greedy

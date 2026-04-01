@@ -1,0 +1,19 @@
+domains:
+  - name: atari100k
+    label: Atari-Pong
+    env_id: ALE/Pong-v5
+    group: visual_discrete
+  - name: dmc_vision
+    label: DMC-Vision-Cartpole
+    domain_name: cartpole
+    task_name: swingup
+    group: visual_continuous
+  - name: dmc_proprio
+    label: DMC-Proprio-Cartpole
+    domain_name: cartpole
+    task_name: swingup
+    group: nonimage_continuous
+  - name: highdim_continuous
+    label: MyoFingerReach
+    env_id: myoFingerReachFixed-v0
+    group: highdim_continuous

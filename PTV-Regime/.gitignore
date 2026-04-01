@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.venv/
+outputs/runs/
+outputs/figures/
+outputs/tables/

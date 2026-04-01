@@ -1,0 +1,7 @@
+name: lic_boids
+mode: homogeneous
+n_samples: 4096
+num_agents: 24
+obs_dim: 4
+action_dim: 2
+event_dim: 5

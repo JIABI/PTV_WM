@@ -1,0 +1,3 @@
+name: small_bank
+model:
+  num_prototypes: 2

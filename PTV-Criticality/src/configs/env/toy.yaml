@@ -1,0 +1,8 @@
+name: toy
+obs_dim: 8
+action_dim: 3
+episode_len: 200
+noise_std: 0.05
+slow_decay: 0.995
+fast_decay: 0.6
+event_threshold: 1.5

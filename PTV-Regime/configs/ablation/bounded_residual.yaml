@@ -1,0 +1,4 @@
+name: bounded_residual
+model:
+  enable_residual_channel: true
+  residual_eps: 0.05

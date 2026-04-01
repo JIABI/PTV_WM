@@ -1,0 +1,8 @@
+- domain=lic_boids
+- task=existence
+- trainer.epochs=1
+- trainer.batch_size=2
+- trainer.history_len=6
+- trainer.pred_len=3
+- domain.n_samples=8
+- domain.num_agents=8

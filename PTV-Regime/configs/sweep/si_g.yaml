@@ -1,0 +1,5 @@
+runs:
+  - stage: audit
+    overrides: {domain: lic_boids, task: capacity_audit}
+  - stage: audit
+    overrides: {domain: lic_boids, task: capacity_audit, ablation: bounded_residual}

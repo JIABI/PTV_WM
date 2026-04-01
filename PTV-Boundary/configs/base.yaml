@@ -1,0 +1,21 @@
+defaults:
+  - runtime: default
+  - model: ralag_wm
+  - audit: multi_audit
+  - chart: bic
+  - deploy: mlp
+  - env: dummy
+  - experiment: main_benchmark
+  - _self_
+
+seed: 7
+device: cpu
+output_dir: outputs
+logging:
+  level: INFO
+trainer:
+  batch_size: 8
+  lr: 1e-3
+  max_steps: 10
+  log_every: 1
+baseline: value_wm

@@ -1,0 +1,8 @@
+torch
+numpy
+omegaconf
+hydra-core
+pandas
+matplotlib
+scipy
+pytest

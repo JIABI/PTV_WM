@@ -1,0 +1,5 @@
+name: dmc
+task: walker_walk
+from_pixels: false
+frame_skip: 2
+episode_len: 1000

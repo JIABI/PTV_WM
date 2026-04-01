@@ -1,0 +1,4 @@
+max_steps: 10
+eval_episodes: 2
+num_workers: 0
+save_every: 1

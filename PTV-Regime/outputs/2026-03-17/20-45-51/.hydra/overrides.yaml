@@ -1,0 +1,9 @@
+- domain=lic_boids
+- task=existence
+- evaluator=predictive
+- checkpoint_path=outputs/runs/lic_boids_existence_7/checkpoint_best.pt
+- trainer.batch_size=2
+- trainer.history_len=6
+- trainer.pred_len=3
+- domain.n_samples=8
+- domain.num_agents=8

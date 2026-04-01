@@ -1,0 +1,9 @@
+name: crafter
+backend: gym
+env_id: CrafterReward-v1
+obs_type: image
+action_type: discrete
+obs_dim: 64
+action_dim: 17
+max_episode_steps: 10000
+seed: 0

@@ -1,0 +1,45 @@
+domains:
+  - name: atari100k
+    label: Atari-Pong
+    env_id: ALE/Pong-v5
+    group: visual_discrete
+    random_score: -20.7
+    human_score: 14.6
+  - name: atari100k
+    label: Atari-Breakout
+    env_id: ALE/Breakout-v5
+    group: visual_discrete
+    random_score: 1.7
+    human_score: 30.5
+  - name: dmc_vision
+    label: DMC-Vision-Cartpole
+    domain_name: cartpole
+    task_name: swingup
+    group: visual_continuous
+  - name: dmc_vision
+    label: DMC-Vision-Walker
+    domain_name: walker
+    task_name: walk
+    group: visual_continuous
+  - name: dmc_proprio
+    label: DMC-Proprio-Cartpole
+    domain_name: cartpole
+    task_name: swingup
+    group: nonimage_continuous
+  - name: dmc_proprio
+    label: DMC-Proprio-Cheetah
+    domain_name: cheetah
+    task_name: run
+    group: nonimage_continuous
+  - name: crafter
+    label: Crafter
+    env_id: CrafterReward-v1
+    group: open_world
+  - name: highdim_continuous
+    label: MyoFingerReach
+    env_id: myoFingerReachFixed-v0
+    group: highdim_continuous
+  - name: procgen
+    label: Procgen-CoinRun
+    env_id: procgen:procgen-coinrun-v0
+    group: generalization

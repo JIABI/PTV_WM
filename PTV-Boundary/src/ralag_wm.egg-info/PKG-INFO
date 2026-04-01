@@ -1,0 +1,151 @@
+Metadata-Version: 2.4
+Name: ralag-wm
+Version: 0.1.0
+Summary: RALAG-WM research scaffold
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+Requires-Dist: torch>=2.1
+Requires-Dist: numpy>=1.24
+Requires-Dist: hydra-core>=1.3
+Requires-Dist: omegaconf>=2.3
+Requires-Dist: pyyaml>=6.0
+Requires-Dist: matplotlib>=3.8
+Requires-Dist: pandas>=2.0
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0; extra == "dev"
+Requires-Dist: pytest-cov>=4.0; extra == "dev"
+Provides-Extra: env-atari
+Requires-Dist: gymnasium[accept-rom-license,atari]>=0.29; extra == "env-atari"
+Requires-Dist: ale-py>=0.8; extra == "env-atari"
+Provides-Extra: env-dmc
+Requires-Dist: dm-control>=1.0; extra == "env-dmc"
+Provides-Extra: env-crafter
+Requires-Dist: crafter>=1.8; extra == "env-crafter"
+Requires-Dist: gym>=0.26; extra == "env-crafter"
+Provides-Extra: env-procgen
+Requires-Dist: procgen>=0.10; extra == "env-procgen"
+Requires-Dist: gym>=0.26; extra == "env-procgen"
+Provides-Extra: env-myo
+Requires-Dist: myosuite>=2.0; extra == "env-myo"
+Requires-Dist: gym>=0.26; extra == "env-myo"
+
+# ralag-wm
+
+RALAG-WM (Reference-Anchored Local Action Geometry World Model) research codebase.
+
+## Core method hierarchy
+
+- **RALAG** is the core prediction object: local action-boundary geometry rather than future appearance.
+- **BIC-Chart** is the identification operator: under a fixed budget, select the action subgraph that best identifies local boundary geometry.
+- **Multi-audit consensus** is the robust reference mechanism: use multiple audit heads and aggregate via trimmed mean / variance.
+- **Geometry-consistent deployment** is the consumption interface: the deployed head explicitly consumes predicted local geometry.
+- **Selective boundary refinement** improves compute--reliability tradeoffs by refining only dangerous futures.
+
+## Repository structure
+
+- `src/ralagwm/`: core method and experiment modules
+- `configs/`: compositional Hydra configs
+- `training/`: training entrypoints and batch-paper launchers
+- `testing/`: evaluation entrypoints and paper exporters
+- `inputs/manifests/`: task rosters and training presets
+- `outputs/`: checkpoints, metrics, figures, tables, debug artifacts
+
+## Installation
+
+```bash
+python -m pip install -e .[dev]
+```
+
+For real benchmarks, install optional extras into the same Python environment:
+
+```bash
+python -m pip install "gymnasium[atari]"
+python -m pip install "gymnasium[accept-rom-license]"
+python -m pip install ale-py
+python -m pip install dm-control
+python -m pip install crafter gym
+python -m pip install procgen gym
+python -m pip install myosuite gym
+```
+
+## Preferred imports
+
+Use:
+
+```python
+from ralagwm.models.ralag_wm import RALAGWM
+from ralagwm.training.paper_pipeline import train_ralag_for_domain
+```
+
+Legacy `import src.ralagwm` is only kept for compatibility.
+
+## Smoke tests
+
+```bash
+python -m pytest tests -q
+```
+
+## Single-run training
+
+```bash
+python training/train_audit.py env=dummy runtime.max_steps=1
+python training/train_ralag_wm.py env=dummy runtime.max_steps=1
+python training/train_baseline.py env=dummy baseline=value_wm runtime.max_steps=1
+```
+
+## Single-run evaluation
+
+```bash
+python testing/eval_main_benchmark.py env=dummy
+python testing/eval_matched_fidelity.py env=dummy
+python testing/eval_oracle_substitution.py env=dummy
+python testing/eval_robustness.py env=dummy
+python testing/eval_frontier.py env=dummy
+```
+
+## Paper-scale batch entrypoints
+
+### Train the paper roster
+
+```bash
+python training/run_paper_training.py
+```
+
+### Run main-paper exports
+
+```bash
+python testing/run_paper_main.py
+```
+
+### Run supplementary / SI exports
+
+```bash
+python testing/run_paper_si.py
+```
+
+### Run everything end-to-end
+
+```bash
+python testing/run_paper_all.py
+```
+
+### Dummy paper roster for fast verification
+
+```bash
+python training/run_paper_training.py experiment.manifest_path=inputs/manifests/paper_dummy_domains.yaml
+python testing/run_paper_main.py env=dummy checkpoint_path=outputs/checkpoints/train-ralag_wm:00_Dummy-Discrete/ralag_wm.pt
+```
+
+## Outputs
+
+- `outputs/checkpoints/`: model checkpoints, grouped by run name
+- `outputs/metrics/`: JSON/CSV/TEX paper artifacts
+- `outputs/figures/`: exported PNG figures
+- `outputs/debug/`: markdown/debug summaries
+
+## Notes
+
+- All object-level baselines share the same BIC-Chart interface.
+- Real third-party environments are optional-dependency guarded.
+- Relative paths are resolved from the repository root when possible.
+- This codebase is organized to match the paper's main-text and SI experiment structure.

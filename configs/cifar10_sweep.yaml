@@ -1,0 +1,51 @@
+seed: 7
+output_root: outputs/cifar10_sweep
+
+dataset:
+  name: cifar10
+  root: data/cifar10
+  train: true
+  download: true
+  image_size: 32
+  batch_size: 64
+
+corruption:
+  name: diffusion_like
+  t_min: 0.05
+  t_max: 0.95
+
+model:
+  name: tiny_unet
+  base_channels: 64
+  time_dim: 64
+
+phi_map:
+  type: shallow
+  hidden_channels: 32
+
+loss:
+  pred_weight: 1.0
+  sem_weight: 0.5
+  stab_weight: 1.0e-4
+
+train:
+  lr: 2.0e-4
+  max_steps: 200
+  eval_every: 50
+  grad_clip: 1.0
+
+sweep:
+  family: simplex
+  num_points: 15
+  max_steps_per_target: 60
+  seeds: [1, 2, 3]
+
+selection:
+  semantic_gap_weight: 0.5
+  complexity_weight: 0.05
+  candidate_family: scheduled
+  schedule_basis_order: 3
+
+eval:
+  collapse_threshold: 0.25
+  tail_percentiles: [95, 99]

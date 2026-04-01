@@ -1,0 +1,2 @@
+kind: mlp
+hidden_dim: 64

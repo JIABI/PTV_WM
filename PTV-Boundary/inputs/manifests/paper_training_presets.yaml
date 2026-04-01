@@ -1,0 +1,99 @@
+presets:
+  visual_discrete:
+    runtime:
+      max_steps: 3
+      eval_episodes: 1
+    trainer:
+      batch_size: 8
+      warmup_episodes: 2
+      collection_episodes: 1
+      gradient_steps: 2
+      replay_capacity: 512
+      lr: 0.001
+    chart:
+      chart_budget: 8
+      pool_budget: 16
+  visual_continuous:
+    runtime:
+      max_steps: 3
+      eval_episodes: 1
+    trainer:
+      batch_size: 8
+      warmup_episodes: 2
+      collection_episodes: 1
+      gradient_steps: 2
+      replay_capacity: 512
+      lr: 0.001
+    chart:
+      chart_budget: 8
+      pool_budget: 16
+  nonimage_continuous:
+    runtime:
+      max_steps: 3
+      eval_episodes: 1
+    trainer:
+      batch_size: 8
+      warmup_episodes: 2
+      collection_episodes: 1
+      gradient_steps: 2
+      replay_capacity: 512
+      lr: 0.001
+    chart:
+      chart_budget: 8
+      pool_budget: 16
+  open_world:
+    runtime:
+      max_steps: 3
+      eval_episodes: 1
+    trainer:
+      batch_size: 8
+      warmup_episodes: 2
+      collection_episodes: 1
+      gradient_steps: 2
+      replay_capacity: 512
+      lr: 0.001
+    chart:
+      chart_budget: 8
+      pool_budget: 16
+  highdim_continuous:
+    runtime:
+      max_steps: 3
+      eval_episodes: 1
+    trainer:
+      batch_size: 8
+      warmup_episodes: 2
+      collection_episodes: 1
+      gradient_steps: 2
+      replay_capacity: 512
+      lr: 0.001
+    chart:
+      chart_budget: 8
+      pool_budget: 32
+  generalization:
+    runtime:
+      max_steps: 3
+      eval_episodes: 1
+    trainer:
+      batch_size: 8
+      warmup_episodes: 2
+      collection_episodes: 1
+      gradient_steps: 2
+      replay_capacity: 512
+      lr: 0.001
+    chart:
+      chart_budget: 8
+      pool_budget: 16
+  dummy:
+    runtime:
+      max_steps: 1
+      eval_episodes: 1
+    trainer:
+      batch_size: 4
+      warmup_episodes: 1
+      collection_episodes: 1
+      gradient_steps: 1
+      replay_capacity: 128
+      lr: 0.001
+    chart:
+      chart_budget: 4
+      pool_budget: 8

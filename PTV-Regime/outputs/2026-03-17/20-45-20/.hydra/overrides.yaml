@@ -1,0 +1,4 @@
+- domain=lic_boids
+- task=existence
+- evaluator=predictive
+- auto_train_if_missing_checkpoint=true

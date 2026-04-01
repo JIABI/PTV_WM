@@ -1,0 +1,5 @@
+name: counterfactual
+climate_dim: 0
+delta_min: -1.0
+delta_max: 1.0
+delta_steps: 9

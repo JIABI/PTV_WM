@@ -1,0 +1,13 @@
+name: dmc_vision
+backend: dm_control
+domain_name: cartpole
+task_name: swingup
+from_pixels: true
+obs_type: image
+action_type: continuous
+obs_dim: 84
+action_dim: 1
+image_size: 84
+camera_id: 0
+action_repeat: 2
+max_episode_steps: 500

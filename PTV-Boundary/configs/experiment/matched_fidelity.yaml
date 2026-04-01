@@ -1,0 +1,6 @@
+name: matched_fidelity
+enabled: true
+save_metrics: true
+save_figures: true
+episodes: 1
+manifest_path: inputs/manifests/matched_fidelity_domains.yaml

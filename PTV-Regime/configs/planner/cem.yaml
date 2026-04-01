@@ -1,0 +1,5 @@
+name: cem
+horizon: 12
+population: 64
+elite: 8
+iterations: 4

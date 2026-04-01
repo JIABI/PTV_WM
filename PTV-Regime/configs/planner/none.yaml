@@ -1,0 +1,4 @@
+name: none
+horizon: 6
+iterations: 1
+lr: 0.1

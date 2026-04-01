@@ -1,0 +1,13 @@
+name: lic_wm
+h_fast: 96
+c_dim: 16
+num_prototypes: 8
+omega_max: 0.15
+use_event_token: true
+transition_mode: full
+stochastic_climate: false
+enable_residual_channel: false
+residual_eps: 0.05
+fast_mode: gru
+context_dim: 16
+experts: 4

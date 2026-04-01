@@ -1,0 +1,12 @@
+name: procgen
+backend: gym
+env_id: procgen:procgen-coinrun-v0
+obs_type: image
+action_type: discrete
+obs_dim: 64
+action_dim: 15
+start_level: 0
+num_levels: 200
+distribution_mode: easy
+max_episode_steps: 1000
+render_mode: null

@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ralag-wm"
+version = "0.1.0"
+description = "RALAG-WM research scaffold"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "torch>=2.1",
+  "numpy>=1.24",
+  "hydra-core>=1.3",
+  "omegaconf>=2.3",
+  "pyyaml>=6.0",
+  "matplotlib>=3.8",
+  "pandas>=2.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0", "pytest-cov>=4.0"]
+env-atari = ["gymnasium[atari,accept-rom-license]>=0.29", "ale-py>=0.8"]
+env-dmc = ["dm-control>=1.0"]
+env-crafter = ["crafter>=1.8", "gym>=0.26"]
+env-procgen = ["procgen>=0.10", "gym>=0.26"]
+env-myo = ["myosuite>=2.0", "gym>=0.26"]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src", "."]
+addopts = "-q"

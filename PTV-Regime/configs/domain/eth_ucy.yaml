@@ -1,0 +1,7 @@
+name: eth_ucy
+data_root: data/ETH_UCY
+use_velocity_proxy: true
+num_agents: 10
+obs_dim: 2
+action_dim: 2
+event_dim: 2

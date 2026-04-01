@@ -1,0 +1,5 @@
+runs:
+  - stage: audit
+    overrides: {domain: lic_boids, task: no_event}
+  - stage: audit
+    overrides: {domain: lic_boids, task: antisteg_audit}

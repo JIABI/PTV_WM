@@ -1,0 +1,7 @@
+name: lic_uav
+scenario: formation
+n_samples: 2048
+num_agents: 12
+obs_dim: 4
+action_dim: 2
+event_dim: 4

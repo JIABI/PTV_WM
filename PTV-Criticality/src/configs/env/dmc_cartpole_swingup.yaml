@@ -1,0 +1,5 @@
+name: dmc
+task: cartpole_swingup
+from_pixels: false
+frame_skip: 2
+episode_len: 1000

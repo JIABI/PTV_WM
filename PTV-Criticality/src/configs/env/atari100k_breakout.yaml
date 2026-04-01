@@ -1,0 +1,5 @@
+name: atari100k
+game: Breakout
+frame_skip: 4
+sticky_actions: true
+episode_len: 27000

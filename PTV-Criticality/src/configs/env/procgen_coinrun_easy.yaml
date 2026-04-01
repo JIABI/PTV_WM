@@ -1,0 +1,6 @@
+name: procgen
+env_name: coinrun
+# Easy/debug setting: fixed single level to ensure learning signal appears quickly.
+num_levels: 1
+start_level: 0
+episode_len: 1000

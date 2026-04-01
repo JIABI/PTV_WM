@@ -1,0 +1,1 @@
+DEFAULT_DTYPE = 'float32'

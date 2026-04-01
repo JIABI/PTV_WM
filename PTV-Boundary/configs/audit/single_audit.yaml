@@ -1,0 +1,5 @@
+num_audits: 1
+trim_ratio: 0.0
+architecture: mlp
+consensus:
+  eps: 1e-6

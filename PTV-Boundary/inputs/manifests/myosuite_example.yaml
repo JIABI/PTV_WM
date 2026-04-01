@@ -1,0 +1,5 @@
+name: myosuite_example
+train_path: /path/to/train
+val_path: /path/to/val
+test_path: /path/to/test
+notes: scaffold manifest placeholder

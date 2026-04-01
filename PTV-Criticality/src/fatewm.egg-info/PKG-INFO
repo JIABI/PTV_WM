@@ -1,0 +1,32 @@
+Metadata-Version: 2.4
+Name: fatewm
+Version: 0.1.0
+Summary: FATE-WM skeleton repository for multi-timescale world models under feedback
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: hydra-core==1.3.2
+Requires-Dist: omegaconf==2.3.0
+Requires-Dist: numpy==1.26.4
+Requires-Dist: tqdm==4.66.4
+Requires-Dist: matplotlib==3.8.4
+
+<div align="center">
+<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+</div>
+
+# Run and deploy your AI Studio app
+
+This contains everything you need to run your app locally.
+
+View your app in AI Studio: https://ai.studio/apps/8d6c2648-ec1e-48be-b891-e5fab9ee33e4
+
+## Run Locally
+
+**Prerequisites:**  Node.js
+
+
+1. Install dependencies:
+   `npm install`
+2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
+3. Run the app:
+   `npm run dev`

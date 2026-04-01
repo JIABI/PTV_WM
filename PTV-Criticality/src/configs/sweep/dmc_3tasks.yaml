@@ -1,0 +1,8 @@
+# Hydra multirun sweep over three standard DMC tasks.
+# Usage:
+#   python -m fatewm.experiments.dmc.train -m +sweep=dmc_3tasks env=dmc method=scheme1_dmc algo=minimal
+
+dmc_tasks:
+  - cartpole_swingup
+  - cheetah_run
+  - walker_walk

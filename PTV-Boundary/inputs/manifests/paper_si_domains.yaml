@@ -1,0 +1,19 @@
+domains:
+  - name: atari100k
+    label: Atari-Breakout
+    env_id: ALE/Breakout-v5
+    group: visual_discrete
+  - name: dmc_vision
+    label: DMC-Vision-Walker
+    domain_name: walker
+    task_name: walk
+    group: visual_continuous
+  - name: dmc_proprio
+    label: DMC-Proprio-Cartpole
+    domain_name: cartpole
+    task_name: swingup
+    group: nonimage_continuous
+  - name: procgen
+    label: Procgen-CoinRun
+    env_id: procgen:procgen-coinrun-v0
+    group: generalization

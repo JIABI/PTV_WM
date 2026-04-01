@@ -1,0 +1,8 @@
+name: dummy
+backend: internal
+obs_type: proprio
+action_type: discrete
+obs_dim: 16
+action_dim: 6
+horizon: 16
+max_episode_steps: 16

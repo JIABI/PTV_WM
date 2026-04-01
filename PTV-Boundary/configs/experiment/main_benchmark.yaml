@@ -1,0 +1,6 @@
+name: main_benchmark
+enabled: true
+save_metrics: true
+save_figures: true
+episodes: 2
+manifest_path: inputs/manifests/main_benchmark_domains.yaml

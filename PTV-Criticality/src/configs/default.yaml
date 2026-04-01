@@ -1,0 +1,56 @@
+defaults:
+- env: toy
+- model: world_model
+- method: rrrm
+- algo: minimal
+- _self_
+
+seed: 42
+device: cpu
+
+behavior:
+  name: random
+  fixed_action: 0
+
+timescales:
+  deltas: [1, 2, 5, 10, 20]
+
+train:
+  total_steps: 10000
+  batch_size: 64
+  update_ratio: 1
+  lr: 1e-3
+  grad_clip: 10.0
+
+replay:
+  capacity: 100000
+  warmup_steps: 1000
+
+eval:
+  interval: 1000
+  episodes: 10
+  policy: interface
+  fixed_action: 0
+
+interface:
+  mode: min_slow
+  hysteresis:
+    margin: 0.05
+  refine:
+    enabled: true
+    margin_trigger: 0.02
+    steps: 2
+    method: mirror
+    eta: 10.0
+    temperature: 1.0
+    resample: false
+    resample_num: 0
+    resample_sigma: 0.1
+    step_size: 0.1
+    grad_clip: 10.0
+  shield:
+    enabled: true
+    alpha: 0.9
+    fallback_action: 0
+  min_slow:
+    enabled: true

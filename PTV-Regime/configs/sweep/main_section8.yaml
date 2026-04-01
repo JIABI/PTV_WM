@@ -1,0 +1,5 @@
+runs:
+  - stage: train
+    overrides: {domain: lic_uav, task: control_value, trainer.epochs: 80, trainer.batch_size: 32, trainer.history_len: 16, trainer.pred_len: 10, domain.n_samples: 2048, domain.num_agents: 12}
+  - stage: eval
+    overrides: {domain: lic_uav, task: control_value, evaluator: control, planner: cem}

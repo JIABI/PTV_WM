@@ -1,0 +1,11 @@
+name: dmc_proprio
+backend: dm_control
+domain_name: cartpole
+task_name: swingup
+from_pixels: false
+obs_type: proprio
+action_type: continuous
+obs_dim: 5
+action_dim: 1
+action_repeat: 2
+max_episode_steps: 500

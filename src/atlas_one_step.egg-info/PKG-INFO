@@ -1,0 +1,119 @@
+Metadata-Version: 2.4
+Name: atlas-one-step
+Version: 0.1.0
+Summary: ATLAS: A target-pathology atlas for one-step generation
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: pyyaml
+Requires-Dist: scikit-learn
+Requires-Dist: matplotlib
+Requires-Dist: joblib
+Requires-Dist: tqdm
+Requires-Dist: pyarrow
+Requires-Dist: torch
+Requires-Dist: torchvision
+Requires-Dist: h5py
+
+# ATLAS: A Target-Pathology Atlas for One-Step High-Dimensional Generation
+
+This repository implements a **runnable ATLAS MVP** for one-step generation research. It includes:
+
+- structured target families (line, simplex, scheduled)
+- a fixed corruption process
+- pathology probes (support deviation, normal burden, conditioning, early-training instability)
+- atlas building and surrogate fitting
+- target selection
+- coupled, unguided decoupled, and atlas-guided decoupled training
+- evaluation and figure export
+
+The code is designed to be **fully executable**, not scaffold-only. It ships with a synthetic smoke dataset so the full pipeline can be tested without external downloads.
+
+## Install
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+pip install -e .
+```
+
+## Smoke test
+
+```bash
+python -m atlas_one_step.cli smoke-test --config configs/default_smoke.yaml
+```
+
+This runs:
+1. a small target sweep,
+2. pathology computation,
+3. atlas build,
+4. surrogate fitting,
+5. target selection,
+6. one short coupled training,
+7. one short atlas-guided decoupled training,
+8. evaluation.
+
+## Main commands
+
+### Run a sweep
+```bash
+python -m atlas_one_step.cli run-sweep --config configs/cifar10_sweep.yaml
+```
+
+### Build atlas
+```bash
+python -m atlas_one_step.cli build-atlas --config configs/cifar10_sweep.yaml --sweep-dir outputs/cifar10_sweep/sweeps
+```
+
+### Fit surrogate
+```bash
+python -m atlas_one_step.cli fit-surrogate --atlas outputs/cifar10_sweep/atlas/atlas.parquet
+```
+
+### Select prediction target
+```bash
+python -m atlas_one_step.cli select-target \
+  --atlas outputs/cifar10_sweep/atlas/atlas.parquet \
+  --surrogate outputs/cifar10_sweep/atlas/surrogate.joblib \
+  --output outputs/cifar10_sweep/atlas/selected_target.json
+```
+
+### Train coupled
+```bash
+python -m atlas_one_step.cli train --config configs/cifar10_train.yaml --mode coupled
+```
+
+### Train atlas-guided decoupled
+```bash
+python -m atlas_one_step.cli train \
+  --config configs/cifar10_train.yaml \
+  --mode atlas_guided \
+  --selected-target outputs/cifar10_sweep/atlas/selected_target.json
+```
+
+### Evaluate
+```bash
+python -m atlas_one_step.cli evaluate \
+  --config configs/cifar10_train.yaml \
+  --checkpoint outputs/cifar10_train/checkpoints/best.pt
+```
+
+## Supported datasets
+
+- `synthetic`: deterministic smoke dataset
+- `cifar10`: via torchvision
+- `imagefolder`: generic image folder dataset for high-res images
+- `pde_h5`: simple HDF5 field dataset for pilots
+
+## Repository layout
+
+- `configs/`: YAML configs
+- `src/atlas_one_step/`: Python package
+- `tests/`: unit/smoke tests
+- `outputs/`: generated runs
+
+## Notes
+
+This package intentionally focuses on the **core experimental program**: target-space sweeps, atlas construction, guided selection, and decoupled one-step training. It is a strong baseline to extend for ImageNet-64/LSUN/PDEBench once data paths and compute budgets are set.

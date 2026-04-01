@@ -1,0 +1,7 @@
+runs:
+  - stage: audit
+    overrides: {domain: lic_boids, task: capacity_audit, ablation: small_bank}
+  - stage: audit
+    overrides: {domain: lic_boids, task: capacity_audit, ablation: medium_bank}
+  - stage: audit
+    overrides: {domain: lic_boids, task: capacity_audit, ablation: large_bank}

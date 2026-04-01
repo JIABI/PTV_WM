@@ -1,0 +1,9 @@
+domains:
+  - name: dummy
+    label: Dummy-Discrete
+    group: dummy
+    obs_type: proprio
+    action_type: discrete
+    obs_dim: 16
+    action_dim: 6
+    horizon: 16

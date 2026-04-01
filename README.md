@@ -1,26 +1,46 @@
-# Prediction-Target Validity Under Fixed Interfaces
+# Prediction-Target Validity Under Fixed Interfaces (PTV)
 
-This repository implements the paper-aligned ATLAS pipeline for studying **target-induced inverse problems** in one-step generation. It includes:
+This repository is organized around the paper framework **Prediction-Target Validity (PTV) Under Fixed Interfaces**.
 
-- structured target families: line, simplex, and scheduled targets
-- a fixed diffusion-like corruption process
-- pathology probes: support deviation, normal burden, conditioning, and early-training instability
-- atlas construction and surrogate fitting
-- atlas-guided target selection
-- coupled, unguided decoupled, and atlas-guided decoupled training
-- plot-ready exports for the paper’s main tables and figures
+PTV is the top-level framing: it defines how prediction targets are specified, evaluated, and compared under a fixed deployment interface. The repository contains multiple executable instantiations of that framing.
 
-The code is runnable end-to-end on a synthetic smoke dataset and is organized so the same CLI can be used for:
+## What PTV is
 
-- **CIFAR-10 / 32x32** compact atlas construction
-- **ImageNet-64 / 64x64** atlas-guided method validation
-- **LSUN Bedroom-256 / 256x256** hard-regime and tail-failure stress tests
-- **PDEBench Darcy** transfer to scientific continuous fields
-- **UCF101 frame pilot** supplementary temporal validation
+- **PTV is a framework** for target validity under fixed interfaces.
+- **PTV is not a single new world-model architecture**.
+- PTV is instantiated here by three separate model families:
+  - **PTV-Regime** (LIC-WM lineage)
+  - **PTV-Boundary** (RALAG-WM lineage)
+  - **PTV-Criticality** (RRRM lineage)
 
-These roles mirror the paper’s experimental program, which separates dense atlas construction, medium-scale validation, high-resolution stress testing, and cross-domain transfer fileciteturn1file0L214-L231.
+## Repository Tree (paper-facing summary)
 
-## Install
+```text
+.
+├── ptv/
+│   ├── core/            # shared framework-facing namespace
+│   ├── regime/          # PTV-Regime integration namespace
+│   ├── boundary/        # PTV-Boundary integration namespace
+│   └── criticality/     # PTV-Criticality integration namespace
+├── configs/
+│   ├── shared/
+│   ├── regime/
+│   ├── boundary/
+│   └── criticality/
+├── scripts/             # top-level train/eval wrappers for the 3 instantiations
+├── docs/
+├── tests/
+├── src/atlas_one_step/  # legacy atlas backend used as current shared-core implementation
+├── PTV-Regime/          # LIC-WM implementation tree
+├── PTV-Boundary/        # RALAG-WM implementation tree
+└── PTV-Criticality/     # RRRM implementation tree
+```
+
+## Getting Started
+
+### 1) Environment
+
+At minimum (framework/core + docs + wrappers):
 
 ```bash
 python -m venv .venv
@@ -29,81 +49,99 @@ pip install -r requirements.txt
 pip install -e .
 ```
 
-## Smoke test
+For instantiation-specific dependencies, also install from each subproject as needed:
+
+- `PTV-Regime/requirements.txt`
+- `PTV-Boundary` extras in `PTV-Boundary/pyproject.toml`
+- `PTV-Criticality/requirements.txt` and optional benchmark extras
+
+### 2) Quick sanity checks
 
 ```bash
-python -m atlas_one_step.cli smoke-test --config configs/default_smoke.yaml
+python -c "import ptv, ptv.core, ptv.regime, ptv.boundary, ptv.criticality"
+pytest -q tests/test_targets.py tests/test_smoke_pipeline.py
 ```
 
-This runs:
-1. a small target sweep,
-2. pathology computation,
-3. atlas build,
-4. surrogate fitting,
-5. target selection,
-6. one short coupled training,
-7. one short atlas-guided decoupled training,
-8. evaluation.
+## Run Instructions by Instantiation
 
-## Paper-aligned entry points
+## PTV-Regime (LIC-WM)
 
-### Compact CIFAR-10 atlas
+Top-level wrappers:
+
 ```bash
-python -m atlas_one_step.cli run-sweep --config configs/cifar10_line_paper.yaml
-python -m atlas_one_step.cli build-atlas --config configs/cifar10_line_paper.yaml
-python -m atlas_one_step.cli fit-surrogate --atlas outputs/cifar10_line_paper/atlas/atlas.parquet
+python scripts/train_regime.py domain=lic_boids trainer.epochs=1 trainer.history_len=8 trainer.pred_len=4
+python scripts/eval_regime.py evaluator=matched_geometry domain=lic_boids trainer.history_len=8 trainer.pred_len=4
 ```
 
-### Atlas-guided target selection
+Canonical implementation tree:
+- Code: `PTV-Regime/src/licwm/`
+- Configs: `PTV-Regime/configs/`
+- Original scripts: `PTV-Regime/scripts/`
+
+## PTV-Boundary (RALAG-WM)
+
+Top-level wrappers:
+
 ```bash
-python -m atlas_one_step.cli select-target \
-  --atlas outputs/cifar10_line_paper/atlas/atlas.parquet \
-  --surrogate outputs/cifar10_line_paper/atlas/surrogate.joblib \
-  --output outputs/cifar10_line_paper/atlas/selected_target.json \
-  --config configs/imagenet64_train_paper.yaml
+python scripts/train_boundary.py env=dummy runtime.max_steps=1
+python scripts/eval_boundary.py env=dummy
 ```
 
-### ImageNet-64 coupled vs atlas-guided training
+Canonical implementation tree:
+- Code: `PTV-Boundary/src/ralagwm/`
+- Configs: `PTV-Boundary/configs/`
+- Original scripts: `PTV-Boundary/training/` and `PTV-Boundary/testing/`
+
+## PTV-Criticality (RRRM)
+
+Top-level wrappers:
+
 ```bash
-python -m atlas_one_step.cli train --config configs/imagenet64_train_paper.yaml --mode coupled
-python -m atlas_one_step.cli train \
-  --config configs/imagenet64_train_paper.yaml \
-  --mode atlas_guided \
-  --selected-target outputs/cifar10_line_paper/atlas/selected_target.json
+python scripts/train_criticality.py device=cpu train.total_steps=200 replay.warmup_steps=32 train.batch_size=16
+python scripts/eval_criticality.py env=toy
 ```
 
-### Plot-ready paper exports
-```bash
-python analysis/paper_results.py \
-  --summary-root outputs \
-  --atlas outputs/cifar10_line_paper/atlas/atlas.parquet \
-  --outdir outputs/paper_results
-```
+Canonical implementation tree:
+- Code: `PTV-Criticality/src/fatewm/`
+- Configs: `PTV-Criticality/src/configs/`
+- Original experiment entrypoints: `PTV-Criticality/src/fatewm/experiments/*`
 
-### One-command convenience script
-```bash
-./run_paper_pipeline.sh
-```
+## Shared vs Instantiation-Specific Code
 
-## Configuration files
+### Shared/framework-level
+- `ptv/core/` provides the current shared framework-facing surface.
+- `src/atlas_one_step/` is the current executable backend for shared fixed-interface target-selection pipeline pieces used in this migration phase.
 
-- `configs/cifar10_line_paper.yaml`: line-family sweep for the main phase-band result
-- `configs/cifar10_boundary_refine.yaml`: boundary-refined sweep
-- `configs/cifar10_simplex_paper.yaml`: simplex sweep for higher-dimensional phase structure
-- `configs/cifar10_train_paper.yaml`: compact paper-strength training config
-- `configs/imagenet64_train_paper.yaml`: medium-scale method validation
-- `configs/lsun256_strongest_paper.yaml`: high-resolution stress-test config
-- `configs/darcy_transfer_paper.yaml`: scientific-field transfer config
-- `configs/ucf101_pilot_paper.yaml`: supplementary video-frame pilot config
+### Instantiation-specific
+- `ptv/regime` ↔ `PTV-Regime/src/licwm/`
+- `ptv/boundary` ↔ `PTV-Boundary/src/ralagwm/`
+- `ptv/criticality` ↔ `PTV-Criticality/src/fatewm/`
 
-## Repository layout
+These remain explicitly separate; they are not collapsed into one model family.
 
-- `configs/`: experiment YAMLs
-- `src/atlas_one_step/`: package code
-- `analysis/`: plot-ready exports and aggregation scripts
-- `tests/`: smoke and target round-trip tests
-- `outputs/`: generated runs
+## Expected Datasets, Configs, and Outputs
 
-## Notes on scope
+- **Framework/core smoke path** uses synthetic data via root `configs/*.yaml` and writes to root `outputs/`.
+- **PTV-Regime** uses domain datasets/adapters documented under `PTV-Regime/data/` and writes under `PTV-Regime/outputs/`.
+- **PTV-Boundary** uses manifests under `PTV-Boundary/inputs/manifests/` and writes under `PTV-Boundary/outputs/`.
+- **PTV-Criticality** uses Hydra configs under `PTV-Criticality/src/configs/` and writes Hydra run outputs under `PTV-Criticality/outputs/`.
 
-The main method in the paper has three stages—build atlas, select prediction target, and train decoupled model—and the code mirrors that structure directly. The target family, atlas, and decoupled objective are implemented to match the paper’s method section.
+If optional external benchmarks are missing, use dummy/toy configs first.
+
+## Paper-to-Code Structure
+
+For detailed mapping, see `docs/paper_to_code_mapping.md`. In short:
+
+- **Framework-level concepts** (fixed-interface setup, target-validity framing, operational selection interface, common evidence protocol) are documented and surfaced via `ptv/core` and current shared backend modules.
+- **Executable instantiations** are provided by:
+  - PTV-Regime (`licwm`)
+  - PTV-Boundary (`ralagwm`)
+  - PTV-Criticality (`fatewm`)
+
+## Migration Notes
+
+For users coming from earlier layouts and names:
+- `docs/migration_from_old_layout.md`
+- `docs/repo_map.md`
+
+Known current-state note: this is a compatibility-first migration stage; canonical implementation trees still live in `PTV-Regime/`, `PTV-Boundary/`, `PTV-Criticality/`, and `src/atlas_one_step/` while top-level PTV namespaces and wrappers provide paper-aligned entry surfaces.

@@ -6,7 +6,7 @@ This document fixes the presentation-layer contract used when exporting Main Fig
 
 All tables/figures that include model or ablation rows should use this order when the field is available:
 
-1. LIC-WM
+1. PTV-Regime
 2. AutoPhysiCK-WM
 3. Context-WM
 4. GRU-WM

@@ -1,120 +1,40 @@
-# ralag-wm
+# PTV-Boundary
 
-RALAG-WM (Reference-Anchored Local Action Geometry World Model) research codebase.
+PTV-Boundary is the **boundary-focused instantiation** under the Prediction-Target Validity (PTV) framework.
 
-## Core method hierarchy
+> Naming alignment: this folder uses **PTV-Boundary** as the primary name (PTV-Boundary lineage).
 
-- **RALAG** is the core prediction object: local action-boundary geometry rather than future appearance.
-- **BIC-Chart** is the identification operator: under a fixed budget, select the action subgraph that best identifies local boundary geometry.
-- **Multi-audit consensus** is the robust reference mechanism: use multiple audit heads and aggregate via trimmed mean / variance.
-- **Geometry-consistent deployment** is the consumption interface: the deployed head explicitly consumes predicted local geometry.
-- **Selective boundary refinement** improves compute--reliability tradeoffs by refining only dangerous futures.
+## What this folder contains
 
-## Repository structure
+- Boundary-specific model/evaluation code: `src/ralagwm/`
+- Boundary configs: `configs/`
+- Boundary training entrypoints: `training/`
+- Boundary evaluation entrypoints: `testing/`
+- Domain manifests: `inputs/manifests/`
+- Boundary outputs: `outputs/`
 
-- `src/ralagwm/`: core method and experiment modules
-- `configs/`: compositional Hydra configs
-- `training/`: training entrypoints and batch-paper launchers
-- `testing/`: evaluation entrypoints and paper exporters
-- `inputs/manifests/`: task rosters and training presets
-- `outputs/`: checkpoints, metrics, figures, tables, debug artifacts
-
-## Installation
+## Install
 
 ```bash
 python -m pip install -e .[dev]
 ```
 
-For real benchmarks, install optional extras into the same Python environment:
+## Quick run
 
 ```bash
-python -m pip install "gymnasium[atari]"
-python -m pip install "gymnasium[accept-rom-license]"
-python -m pip install ale-py
-python -m pip install dm-control
-python -m pip install crafter gym
-python -m pip install procgen gym
-python -m pip install myosuite gym
-```
-
-## Preferred imports
-
-Use:
-
-```python
-from ralagwm.models.ralag_wm import RALAGWM
-from ralagwm.training.paper_pipeline import train_ralag_for_domain
-```
-
-Legacy `import src.ralagwm` is only kept for compatibility.
-
-## Smoke tests
-
-```bash
-python -m pytest tests -q
-```
-
-## Single-run training
-
-```bash
-python training/train_audit.py env=dummy runtime.max_steps=1
 python training/train_ralag_wm.py env=dummy runtime.max_steps=1
-python training/train_baseline.py env=dummy baseline=value_wm runtime.max_steps=1
-```
-
-## Single-run evaluation
-
-```bash
 python testing/eval_main_benchmark.py env=dummy
-python testing/eval_matched_fidelity.py env=dummy
-python testing/eval_oracle_substitution.py env=dummy
-python testing/eval_robustness.py env=dummy
-python testing/eval_frontier.py env=dummy
 ```
 
-## Paper-scale batch entrypoints
-
-### Train the paper roster
+## Paper workflow
 
 ```bash
 python training/run_paper_training.py
-```
-
-### Run main-paper exports
-
-```bash
 python testing/run_paper_main.py
-```
-
-### Run supplementary / SI exports
-
-```bash
 python testing/run_paper_si.py
 ```
 
-### Run everything end-to-end
+## Compatibility note
 
-```bash
-python testing/run_paper_all.py
-```
-
-### Dummy paper roster for fast verification
-
-```bash
-python training/run_paper_training.py experiment.manifest_path=inputs/manifests/paper_dummy_domains.yaml
-python testing/run_paper_main.py env=dummy checkpoint_path=outputs/checkpoints/train-ralag_wm:00_Dummy-Discrete/ralag_wm.pt
-```
-
-## Outputs
-
-- `outputs/checkpoints/`: model checkpoints, grouped by run name
-- `outputs/metrics/`: JSON/CSV/TEX paper artifacts
-- `outputs/figures/`: exported PNG figures
-- `outputs/debug/`: markdown/debug summaries
-
-## Notes
-
-- All object-level baselines share the same BIC-Chart interface.
-- Real third-party environments are optional-dependency guarded.
-- Relative paths are resolved from the repository root when possible.
-- This codebase is organized to match the paper's main-text and SI experiment structure.
+Internal module/config identifiers (for example `ralagwm`, `ralag_wm`, and existing script/config filenames) are currently preserved for compatibility.
+Public documentation and paper-facing naming in this repository should treat this instantiation as **PTV-Boundary**.

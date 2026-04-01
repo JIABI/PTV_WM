@@ -8,7 +8,7 @@ version = "0.2.0"
 description = "Reference implementation of Resource-Rational Risk Minimization for closed-loop reliable world models"
 readme = "README.md"
 requires-python = ">=3.10"
-authors = [{name = "OpenAI code refactor for user-provided RRRM manuscript"}]
+authors = [{name = "OpenAI code refactor for user-provided PTV-Criticality manuscript"}]
 dependencies = [
   "numpy>=1.23,<3",
   "torch>=2.1",

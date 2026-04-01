@@ -9,9 +9,9 @@ PTV is the top-level framing: it defines how prediction targets are specified, e
 - **PTV is a framework** for target validity under fixed interfaces.
 - **PTV is not a single new world-model architecture**.
 - PTV is instantiated here by three separate model families:
-  - **PTV-Regime** (LIC-WM lineage)
-  - **PTV-Boundary** (RALAG-WM lineage)
-  - **PTV-Criticality** (RRRM lineage)
+  - **PTV-Regime** (PTV-Regime lineage)
+  - **PTV-Boundary** (PTV-Boundary lineage)
+  - **PTV-Criticality** (PTV-Criticality lineage)
 
 ## Repository Tree (paper-facing summary)
 
@@ -31,9 +31,9 @@ PTV is the top-level framing: it defines how prediction targets are specified, e
 ├── docs/
 ├── tests/
 ├── src/atlas_one_step/  # legacy atlas backend used as current shared-core implementation
-├── PTV-Regime/          # LIC-WM implementation tree
-├── PTV-Boundary/        # RALAG-WM implementation tree
-└── PTV-Criticality/     # RRRM implementation tree
+├── PTV-Regime/          # PTV-Regime implementation tree
+├── PTV-Boundary/        # PTV-Boundary implementation tree
+└── PTV-Criticality/     # PTV-Criticality implementation tree
 ```
 
 ## Getting Started
@@ -64,7 +64,7 @@ pytest -q tests/test_targets.py tests/test_smoke_pipeline.py
 
 ## Run Instructions by Instantiation
 
-## PTV-Regime (LIC-WM)
+## PTV-Regime
 
 Top-level wrappers:
 
@@ -78,7 +78,7 @@ Canonical implementation tree:
 - Configs: `PTV-Regime/configs/`
 - Original scripts: `PTV-Regime/scripts/`
 
-## PTV-Boundary (RALAG-WM)
+## PTV-Boundary
 
 Top-level wrappers:
 
@@ -92,7 +92,7 @@ Canonical implementation tree:
 - Configs: `PTV-Boundary/configs/`
 - Original scripts: `PTV-Boundary/training/` and `PTV-Boundary/testing/`
 
-## PTV-Criticality (RRRM)
+## PTV-Criticality
 
 Top-level wrappers:
 

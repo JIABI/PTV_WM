@@ -1,6 +1,6 @@
 """PTV-Boundary integration namespace.
 
-Wraps the migrated RALAG-WM implementation currently housed in PTV-Boundary/src.
+Wraps the migrated PTV-Boundary implementation currently housed in PTV-Boundary/src.
 """
 
 from __future__ import annotations

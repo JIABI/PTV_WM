@@ -118,7 +118,7 @@ def run_matched_fidelity(cfg: Any, checkpoint_paths: list[str] | None = None) ->
             ax.plot(xs, coeff[0] * xs + coeff[1], color="black", linewidth=1.0)
         ax.set_title(domain["label"])
         ax.set_xlabel("Future fidelity proxy")
-        ax.set_ylabel("RALAG distortion")
+        ax.set_ylabel("PTV-Boundary distortion")
     axes[0].legend(frameon=False, title="bucket")
     fig.suptitle("Figure 2: Matched-fidelity analysis")
     save_figure(fig, "outputs/figures/figure2_matched_fidelity.png")

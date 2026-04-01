@@ -1,4 +1,4 @@
-"""Budgeted risk router for RRRM-style horizon allocation."""
+"""Budgeted risk router for PTV-Criticality-style horizon allocation."""
 
 from __future__ import annotations
 

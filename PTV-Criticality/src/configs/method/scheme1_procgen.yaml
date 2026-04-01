@@ -1,4 +1,4 @@
-name: rrrm
+name: ptv_criticality
 reference: procgen_oracle
 mediator: margin
 risk_alpha: 0.9

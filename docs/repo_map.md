@@ -40,11 +40,11 @@ This document describes the current repository tree after the PTV-first refactor
 
 ## Instantiation-specific code
 - `PTV-Regime/`
-  - LIC-WM implementation, configs, scripts, datasets, outputs.
+  - PTV-Regime implementation, configs, scripts, datasets, outputs.
 - `PTV-Boundary/`
-  - RALAG-WM implementation, configs, train/eval scripts, manifests, outputs.
+  - PTV-Boundary implementation, configs, train/eval scripts, manifests, outputs.
 - `PTV-Criticality/`
-  - RRRM implementation, Hydra experiments, configs, outputs.
+  - PTV-Criticality implementation, Hydra experiments, configs, outputs.
 
 ## Top-level integration surfaces
 - `ptv/regime`, `ptv/boundary`, `ptv/criticality`

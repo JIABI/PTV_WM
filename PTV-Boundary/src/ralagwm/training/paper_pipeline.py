@@ -559,7 +559,7 @@ def train_ralag_for_domain(cfg: Any, run_name: str, audit_ckpt: str | Path | Non
         hist.append(row)
 
         LOGGER.info(
-            "[ralag] domain=%s epoch=%d/%d loss=%.4f eval_return=%.3f flip=%.3f",
+            "[PTV-Boundary] domain=%s epoch=%d/%d loss=%.4f eval_return=%.3f flip=%.3f",
             _env_label(cfg.env),
             epoch + 1,
             max_epochs,

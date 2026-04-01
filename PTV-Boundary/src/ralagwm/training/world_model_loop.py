@@ -1,4 +1,4 @@
-"""Environment-driven world-model training loop for RALAG-WM."""
+"""Environment-driven world-model training loop for PTV-Boundary."""
 from __future__ import annotations
 
 from dataclasses import dataclass

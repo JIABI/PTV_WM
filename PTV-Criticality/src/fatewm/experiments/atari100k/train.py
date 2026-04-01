@@ -36,7 +36,7 @@ def build_components(cfg: DictConfig, device: torch.device):
         "action_bounds": action_bounds,
     }
 
-    if cfg.method.name in ("rrrm", "fatewm"):
+    if cfg.method.name in ("ptv_criticality", "rrrm", "fatewm"):
         time_emb_freq = int(getattr(cfg.method, "time_emb_freq", 8))
         rcfg = RouterConfig(
             z_feat_dim=4,

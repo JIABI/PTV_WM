@@ -167,7 +167,7 @@ def train(cfg, build_components, eval_env_cfg=None):
                 torch.nn.utils.clip_grad_norm_(algo.parameters(), float(OmegaConf.select(cfg, "train.grad_clip", default=10.0)))
                 optimizer.step()
 
-                if cfg.method.name in ("rrrm", "fatewm") and hasattr(router, "dual_update"):
+                if cfg.method.name in ("ptv_criticality", "rrrm", "fatewm") and hasattr(router, "dual_update"):
                     mean_sum_w = float(out.logs.get("mean_sum_w", 0.0))
                     B_budget = float(out.logs.get("budget_B", OmegaConf.select(cfg, "method.B", default=8.0)))
                     router.dual_update(mean_sum_w - B_budget)

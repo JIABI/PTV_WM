@@ -46,7 +46,7 @@ Single-game example:
 ```bash
 python -m fatewm.experiments.atari100k.train \
   env=atari100k_breakout \
-  method=rrrm \
+  method=ptv_criticality \
   algo=minimal \
   device=cuda
 ```

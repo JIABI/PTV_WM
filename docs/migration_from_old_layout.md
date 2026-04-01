@@ -7,9 +7,9 @@ This guide maps prior project names/paths to the current paper-aligned PTV frami
 | Old naming | Current naming |
 |---|---|
 | atlas / atlas-one-step (top-level identity) | PTV framework-level shared/core layer |
-| LIC-WM | PTV-Regime |
-| RALAG-WM | PTV-Boundary |
-| RRRM / RRRM-WM | PTV-Criticality |
+| PTV-Regime | PTV-Regime |
+| PTV-Boundary | PTV-Boundary |
+| PTV-Criticality / PTV-Criticality | PTV-Criticality |
 
 ## Path migration (old -> current)
 
@@ -59,9 +59,9 @@ Current canonical executable config trees still live at:
 ## How old projects map into PTV framing
 
 - **Atlas code** is kept where it supports shared framework/core behavior under fixed interfaces; it is no longer the repository's dominant identity.
-- **LIC-WM** is treated as the executable basis for **PTV-Regime**.
-- **RALAG-WM** is treated as the executable basis for **PTV-Boundary**.
-- **RRRM** is treated as the executable basis for **PTV-Criticality**.
+- **PTV-Regime** is treated as the executable basis for **PTV-Regime**.
+- **PTV-Boundary** is treated as the executable basis for **PTV-Boundary**.
+- **PTV-Criticality** is treated as the executable basis for **PTV-Criticality**.
 
 ## Known compatibility notes
 

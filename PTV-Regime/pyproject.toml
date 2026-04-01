@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "licwm"
 version = "0.2.0"
-description = "Paper-level reproducible LIC-WM framework"
+description = "Paper-level reproducible PTV-Regime framework"
 requires-python = ">=3.10"
 dependencies = [
   "torch",

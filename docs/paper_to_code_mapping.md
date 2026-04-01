@@ -50,21 +50,21 @@ Some concepts are currently represented as **framework-level documentation + int
 
 ## 5) PTV-Regime
 
-- Paper alignment: regime-oriented instantiation (LIC-WM lineage).
+- Paper alignment: regime-oriented instantiation (PTV-Regime lineage).
 - Executable code: `PTV-Regime/src/licwm/`.
 - PTV namespace surface: `ptv/regime`.
 - Top-level run wrappers: `scripts/train_regime.py`, `scripts/eval_regime.py`.
 
 ## 6) PTV-Boundary
 
-- Paper alignment: boundary-oriented instantiation (RALAG-WM lineage).
+- Paper alignment: boundary-oriented instantiation (PTV-Boundary lineage).
 - Executable code: `PTV-Boundary/src/ralagwm/`.
 - PTV namespace surface: `ptv/boundary`.
 - Top-level run wrappers: `scripts/train_boundary.py`, `scripts/eval_boundary.py`.
 
 ## 7) PTV-Criticality
 
-- Paper alignment: criticality-oriented instantiation (RRRM lineage).
+- Paper alignment: criticality-oriented instantiation (PTV-Criticality lineage).
 - Executable code: `PTV-Criticality/src/fatewm/`.
 - PTV namespace surface: `ptv/criticality`.
 - Top-level run wrappers: `scripts/train_criticality.py`, `scripts/eval_criticality.py`.

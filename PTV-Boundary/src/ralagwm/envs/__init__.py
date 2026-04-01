@@ -1,4 +1,4 @@
-"""Environment adapter factory for RALAG-WM."""
+"""Environment adapter factory for PTV-Boundary."""
 from __future__ import annotations
 
 from collections.abc import Mapping

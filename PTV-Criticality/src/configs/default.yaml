@@ -1,7 +1,7 @@
 defaults:
 - env: toy
 - model: world_model
-- method: rrrm
+- method: ptv_criticality
 - algo: minimal
 - _self_
 

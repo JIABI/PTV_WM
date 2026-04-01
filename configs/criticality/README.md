@@ -1,4 +1,4 @@
 # PTV-Criticality configs
 
-Canonical RRRM/PTV-Criticality config tree currently lives at:
+Canonical PTV-Criticality/PTV-Criticality config tree currently lives at:
 - `PTV-Criticality/src/configs/`

@@ -1,4 +1,4 @@
-"""Central typing exports for RALAG-WM.
+"""Central typing exports for PTV-Boundary.
 
 Prefer importing structured objects from here or from :mod:`ralagwm.data.batch`.
 """

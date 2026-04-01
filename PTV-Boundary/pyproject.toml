@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "ralag-wm"
 version = "0.1.0"
-description = "RALAG-WM research scaffold"
+description = "PTV-Boundary research scaffold"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [

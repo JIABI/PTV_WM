@@ -72,8 +72,8 @@ COMMON_ALIASES = {
 }
 
 METHOD_ALIASES = {
-    "lic_wm": "LIC-WM",
-    "LIC-WM": "LIC-WM",
+    "lic_wm": "PTV-Regime",
+    "PTV-Regime": "PTV-Regime",
     "auto_physick_wm": "AutoPhysiCK-WM",
     "AutoPhysiCK-WM": "AutoPhysiCK-WM",
     "context_wm": "Context-WM",
@@ -81,7 +81,7 @@ METHOD_ALIASES = {
     "transformer_wm": "Transformer-WM",
     "cfc_wm": "CfC-WM",
     "moe_wm": "MoE-WM",
-    "full": "LIC-WM",
+    "full": "PTV-Regime",
     "no_climate": "No Climate",
     "no_jump": "No Jump",
     "no_slow": "No Slow Drift",
@@ -96,7 +96,7 @@ METHOD_ALIASES = {
 }
 
 METHOD_ORDER = (
-    "LIC-WM",
+    "PTV-Regime",
     "AutoPhysiCK-WM",
     "Context-WM",
     "GRU-WM",
@@ -301,7 +301,7 @@ SI_TABLE_SPECS = [
 ]
 
 MAIN_FIGURE_SPECS = [
-    FigureSpec("Figure1", "Method overview schematic", "", "Figure1_method_overview", tuple(), "Manual schematic aligned to the method section; not auto-generated from CSV.", generated=False, caption_stub="Overview of LIC-WM. The fast layer models reusable local response prototypes, while the slow climate generates a bounded law state that deforms local interaction laws through a narrow interface."),
+    FigureSpec("Figure1", "Method overview schematic", "", "Figure1_method_overview", tuple(), "Manual schematic aligned to the method section; not auto-generated from CSV.", generated=False, caption_stub="Overview of PTV-Regime. The fast layer models reusable local response prototypes, while the slow climate generates a bounded law state that deforms local interaction laws through a narrow interface."),
     FigureSpec("Figure2", "LIC-Boids mechanism evidence", "main_section6.csv", "Figure2_lic_boids_mechanism", ("geometry_match_quality", "law_separation", "response_separation", "monotonicity"), "Main Sec.6 existence, identifiability, and counterfactual evidence.", plot_kind="line", aliases=COMMON_ALIASES, value_aliases=COMMON_VALUE_ALIASES, categorical_orders=COMMON_CATEGORICAL_ORDERS, required_columns=("geometry_match_quality", "law_separation", "response_separation"), sort_by=("task", "method"), row_filter={"domain": ("lic_boids", "LIC-Boids")}, caption_stub="Mechanism evidence on LIC-Boids showing matched-geometry separation, law-state separation, response separation, and counterfactual monotonicity."),
     FigureSpec("Figure3", "Cross-domain crowd and road evidence", "main_section7.csv", "Figure3_cross_domain_evidence", ("step_rmse", "rollout_ade", "rollout_fde", "rollout_horizon"), "Main Sec.7 cross-domain predictive stability and event-aligned drift.", plot_kind="line", aliases=COMMON_ALIASES, value_aliases=COMMON_VALUE_ALIASES, categorical_orders=COMMON_CATEGORICAL_ORDERS, required_columns=("domain",), sort_by=("domain", "scene", "method"), row_filter={"domain": ("eth_ucy", "sdd", "interaction", "ETH/UCY", "SDD", "INTERACTION")}, caption_stub="Cross-domain predictive stability on crowd and road-interaction benchmarks."),
     FigureSpec("Figure4", "LIC-UAV control value", "main_section8.csv", "Figure4_lic_uav_control_value", ("success_rate", "safety_violation", "recovery_latency", "cvar"), "Main Sec.8 control success, safety, and recovery.", plot_kind="bar", aliases=COMMON_ALIASES, value_aliases=COMMON_VALUE_ALIASES, categorical_orders=COMMON_CATEGORICAL_ORDERS, required_columns=("task",), sort_by=("task", "method"), row_filter={"domain": ("lic_uav", "LIC-UAV")}, caption_stub="Closed-loop control value on LIC-UAV, including task success, safety, recovery, and tail risk."),

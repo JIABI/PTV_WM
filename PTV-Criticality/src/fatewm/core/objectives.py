@@ -359,7 +359,7 @@ def compute_rrrm_loss(algo, router, batch, deltas, method_cfg, device, env_cfg=N
 
 
 def compute_fatewm_loss(algo, router, batch, deltas, method_cfg, device, env_cfg=None, teacher_algo=None):
-    # backward-compatible alias: the repository now uses the RRRM objective as
+    # backward-compatible alias: the repository now uses the PTV-Criticality objective as
     # the main paper-aligned method, while preserving the older method name.
     return compute_rrrm_loss(algo, router, batch, deltas, method_cfg, device, env_cfg=env_cfg, teacher_algo=teacher_algo)
 

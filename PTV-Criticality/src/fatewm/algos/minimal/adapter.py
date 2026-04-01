@@ -15,7 +15,7 @@ from fatewm.core.objectives import (
 
 
 class MinimalAdapter(AlgoAdapter):
-    """Compact self-contained world model used by the RRRM reference code.
+    """Compact self-contained world model used by the PTV-Criticality reference code.
 
     It is intentionally lightweight so the full training/evaluation stack remains
     runnable without external RL frameworks, while still exposing the interfaces
@@ -139,8 +139,8 @@ class MinimalAdapter(AlgoAdapter):
         done_seq = torch.tensor(done_seq, dtype=torch.float32, device=device)
         batch_tensors = (obs_seq, act_seq, rew_seq, done_seq, extra_seq)
 
-        method_name = str(method_cfg.get("name", "rrrm"))
-        if method_name in ("rrrm", "fatewm"):
+        method_name = str(method_cfg.get("name", "ptv_criticality"))
+        if method_name in ("ptv_criticality", "rrrm", "fatewm"):
             loss, logs = compute_rrrm_loss(self, fate_estimator, batch_tensors, deltas, method_cfg, device, env_cfg=env_cfg, teacher_algo=teacher_algo)
         elif method_name == "uniform":
             loss, logs = compute_uniform_loss(self, batch_tensors, deltas, method_cfg, device)

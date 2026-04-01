@@ -1,4 +1,4 @@
-"""RALAG-WM package."""
+"""PTV-Boundary package."""
 
 import numpy as np
 

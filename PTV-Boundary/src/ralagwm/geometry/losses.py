@@ -1,4 +1,4 @@
-"""Losses for RALAG geometry supervision."""
+"""Losses for PTV-Boundary geometry supervision."""
 from __future__ import annotations
 
 import torch

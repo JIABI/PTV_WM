@@ -1,6 +1,6 @@
 """PTV-Criticality integration namespace.
 
-Wraps the migrated RRRM implementation currently housed in PTV-Criticality/src.
+Wraps the migrated PTV-Criticality implementation currently housed in PTV-Criticality/src.
 """
 
 from __future__ import annotations

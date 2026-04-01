@@ -1,6 +1,6 @@
 """PTV-Regime integration namespace.
 
-Wraps the migrated LIC-WM implementation currently housed in PTV-Regime/src.
+Wraps the migrated PTV-Regime implementation currently housed in PTV-Regime/src.
 """
 
 from __future__ import annotations

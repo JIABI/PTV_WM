@@ -1,4 +1,4 @@
-"""RALAG geometry extraction from consensus scores and a chart."""
+"""PTV-Boundary geometry extraction from consensus scores and a chart."""
 from __future__ import annotations
 
 import torch
@@ -62,7 +62,7 @@ def extract_ralag_geometry(
     chart: BICChart,
     disagreement: torch.Tensor | None = None,
 ) -> RALAGGeometry:
-    """Extract chart-local RALAG geometry.
+    """Extract chart-local PTV-Boundary geometry.
 
     Supports both single charts and padded batched charts.
     """

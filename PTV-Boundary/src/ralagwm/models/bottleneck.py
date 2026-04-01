@@ -6,7 +6,7 @@ import torch.nn as nn
 
 class GeometryBottleneck(nn.Module):
     """
-    Simple variational bottleneck for RALAG-WM.
+    Simple variational bottleneck for PTV-Boundary.
 
     Args:
         input_dim: input feature dimension

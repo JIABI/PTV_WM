@@ -5,11 +5,21 @@ This repository supports the NCS manuscript: **A prospective protocol for reliab
 The primary reproducible case is the **molecular-screening MLIP hero case**.
 Legacy **PTV-Regime / PTV-Boundary / PTV-Criticality** trees are retained as stress-test instantiations and historical implementation lineages.
 
-## NCS reproducibility (primary path)
+## NCS reproducibility modes
+
+Bundled/example data are for **smoke testing only**.
+Manuscript reproduction requires **author-supplied frozen source data** under `data/ncs_mlip/`.
+
+Example/smoke export:
 
 ```bash
-pip install -e .
-python -m ptv_ncs_mlip.cli export-all --config configs/ncs_mlip_hero.yaml
+PYTHONPATH=src python -m ptv_ncs_mlip.cli export-all --config configs/ncs_mlip_hero.yaml --example-ok
+```
+
+Manuscript strict validation:
+
+```bash
+PYTHONPATH=src python -m ptv_ncs_mlip.cli validate-archive --data-root data/ncs_mlip --manuscript-strict
 ```
 
 Expected outputs under `outputs/ncs_mlip/`:

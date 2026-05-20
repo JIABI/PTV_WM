@@ -1,6 +1,8 @@
 # NCS MLIP data directory (author-supplied)
 
-Place the frozen manuscript archive files here before running:
+The bundled repository does not contain manuscript source data. Manuscript-level reproduction requires the author-supplied frozen source-data archive.
+
+Place the frozen manuscript archive files here before running manuscript-strict validation/export:
 
 - `mp_query.json`
 - `mp_screening_pool.csv`
@@ -12,8 +14,10 @@ Place the frozen manuscript archive files here before running:
 - `mlip_hero_case_rounds.csv`
 - `mlip_hero_case_summary.csv`
 - `thresholds_lock.json`
-- `representative_false_stable_cases.csv`
+- `selector_config.yaml`
+- `code_commit.txt`
 - `heldout_systems.csv`
 - `external_systems.csv`
+- `representative_false_stable_cases.csv` (optional unless SI reports candidate-level MP-ID cases)
 
 These files are intentionally not committed.

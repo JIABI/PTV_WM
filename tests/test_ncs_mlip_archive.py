@@ -40,6 +40,7 @@ def _write_strict_required(root: Path):
         (root / name).write_text('ok\n', encoding='utf-8')
     (root / 'thresholds_lock.json').write_text('{}', encoding='utf-8')
     (root / 'selector_config.yaml').write_text('selector: {}\n', encoding='utf-8')
+    (root / 'code_commit.txt').write_text('abc123\n', encoding='utf-8')
 
 
 def test_example_mode_allows_smoke_data(tmp_path):

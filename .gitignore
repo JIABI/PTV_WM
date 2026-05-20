@@ -11,3 +11,5 @@ data/ncs_mlip/*.json
 # Python cache
 __pycache__/
 *.pyc
+*.pyo
+.pytest_cache/

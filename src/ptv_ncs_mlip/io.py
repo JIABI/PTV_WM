@@ -26,9 +26,6 @@ def load_archive(data_root, manuscript_strict=False, example_ok=False):
 
     if manuscript_strict:
         _validate_manuscript_strict(root, out)
-    elif not example_ok:
-        # default behavior remains strict about having complete table set; content checks only in manuscript strict
-        pass
 
     _validate_schema(out)
     return out
@@ -44,30 +41,33 @@ def _validate_schema(a):
 
 
 def _validate_manuscript_strict(root: Path, archive):
-    extra_required = [
+    required_files = [
         'mp_splits.csv',
         'mlip_hero_case_rounds.csv',
         'mlip_hero_case_summary.csv',
         'thresholds_lock.json',
-        'representative_false_stable_cases.csv',
+        'selector_config.yaml',
+        'code_commit.txt',
         'heldout_systems.csv',
         'external_systems.csv',
-        'selector_config.yaml',
     ]
-    for name in extra_required:
-        if not (root / name).exists():
-            raise ValueError(f'missing {name}')
+    missing = [name for name in required_files if not (root / name).exists()]
 
     q = archive['mp_query.json']
-    for key in ('query_date', 'mp_api_version', 'code_commit'):
-        if key not in q or q[key] in (None, ''):
-            raise ValueError(f'missing {key}')
+    missing_meta = [k for k in ('query_date', 'mp_api_version', 'code_commit') if k not in q or q[k] in (None, '')]
+
+    if missing or missing_meta:
+        parts = []
+        if missing:
+            parts.append('missing required files: ' + ', '.join(missing))
+        if missing_meta:
+            parts.append('missing metadata: ' + ', '.join(missing_meta))
+        raise ValueError('; '.join(parts))
 
     for file_name, df in archive.items():
-        if not isinstance(df, pd.DataFrame):
-            continue
-        _check_banned_tokens(df, file_name)
-        _check_fake_mpid(df, file_name)
+        if isinstance(df, pd.DataFrame):
+            _check_banned_tokens(df, file_name)
+            _check_fake_mpid(df, file_name)
 
 
 def _check_banned_tokens(df: pd.DataFrame, file_name: str):

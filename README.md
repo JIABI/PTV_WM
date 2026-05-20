@@ -16,11 +16,17 @@ Example/smoke export:
 PYTHONPATH=src python -m ptv_ncs_mlip.cli export-all --config configs/ncs_mlip_hero.yaml --example-ok
 ```
 
-Manuscript strict validation:
+Manuscript reproduction:
 
 ```bash
 PYTHONPATH=src python -m ptv_ncs_mlip.cli validate-archive --data-root data/ncs_mlip --manuscript-strict
+PYTHONPATH=src python -m ptv_ncs_mlip.cli export-all --config configs/ncs_mlip_hero.yaml --manuscript-strict
 ```
+
+Notes:
+- Example/smoke outputs are **not manuscript-reproducible**.
+- Real frozen source data must be supplied before journal submission.
+- Generated outputs should be archived separately and **must not be committed**.
 
 Expected outputs under `outputs/ncs_mlip/`:
 - Extended Data Table 1 source data

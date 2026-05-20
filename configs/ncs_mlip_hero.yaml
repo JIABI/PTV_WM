@@ -1,0 +1,47 @@
+data_root: data/ncs_mlip
+output_root: outputs/ncs_mlip
+
+stability:
+  delta_mev_per_atom: 25.0
+  top_k: 200
+
+screening:
+  n_rounds: 15
+  n_query: 48216
+  n_pool: 2416
+  n_surrogates: 23
+
+selector:
+  candidate_targets:
+    - average_ef
+    - tail_force
+    - rank_margin
+    - stability_threshold
+  nominated_target: stability_threshold
+  evidence_coordinates:
+    - relevance
+    - auditability
+    - sufficiency
+    - pre_deployment_value
+  thresholds:
+    relevance: 0.50
+    auditability: 0.60
+    sufficiency: 0.50
+    pre_deployment_value: 0.60
+  dominance_margin: 0.10
+  near_tie_margin: 0.05
+  composite: geometric_mean
+
+stats:
+  bootstrap_ci: 0.95
+  bootstrap_reps: 10000
+  permutation_reps: 100000
+  holm_family:
+    baselines:
+      - lowest_mae
+      - decision_aware
+      - learned_meta_selector
+    metrics:
+      - false_stable_rate
+      - wasted_validation_budget
+      - topk_oracle_overlap

@@ -1,0 +1,15 @@
+# Generated outputs
+outputs/
+
+# Local/archive data drops (author supplied)
+data/ncs_mlip/*.csv
+data/ncs_mlip/*.json
+
+# keep documentation file
+!data/ncs_mlip/README.md
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
